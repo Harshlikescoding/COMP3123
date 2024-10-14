@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management</title>
+</head>
+<body>
+    <h1>Employee Management</h1>
+    <form id="employeeForm">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required><br><br>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="position">Position:</label>
+        <input type="text" id="position" name="position" required><br><br>
+
+        <label for="salary">Salary:</label>
+        <input type="number" id="salary" name="salary" required><br><br>
+
+        <label for="date_of_joining">Date of Joining:</label>
+        <input type="date" id="date_of_joining" name="date_of_joining" required><br><br>
+
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department" required><br><br>
+
+        <button type="submit">Add Employee</button>
+    </form>
+
+    <script>
+        document.getElementById('employeeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const first_name = document.getElementById('first_name').value;
+            const last_name = document.getElementById('last_name').value;
+            const email = document.getElementById('email').value;
+            const position = document.getElementById('position').value;
+            const salary = document.getElementById('salary').value;
+            const date_of_joining = document.getElementById('date_of_joining').value;
+            const department = document.getElementById('department').value;
+
+            fetch('http://localhost:3000/api/v1/emp', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ first_name, last_name, email, position, salary, date_of_joining, department }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                alert(JSON.stringify(data));
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
