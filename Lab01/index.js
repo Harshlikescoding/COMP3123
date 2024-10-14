@@ -34,7 +34,7 @@ console.log(right("Hi"));
 
 
 //4.find the type of the angle
-function angle_Type(angle) {
+function angle_Type (angle) {
     if (angle > 0 && angle < 90) {
         return "Acute angle";
     } else if (angle === 90) {
